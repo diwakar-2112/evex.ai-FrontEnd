@@ -65,6 +65,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "port": 4500
+          },
           "configurations": {
             "production": {
               "buildTarget": "evex-management:build:production"
@@ -102,5 +105,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "a86ba653-ba37-435e-8308-3da9f83a0021"
   }
 }
