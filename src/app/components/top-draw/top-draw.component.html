@@ -1,0 +1,119 @@
+<div class="container">
+    <button (click)="gotoPage('/topdraw')">go</button>
+    <div class="row justify-content-center d-flex text-center">
+        <img class="game-logo" src="/assets/kiosk/Top Draw@3x.png" alt=""><span class="game-logo-text">Top Draw</span>
+    </div>
+    <div class="row justify-content-center">
+        <div class=" col-10 d-flex justify-content-between btn btn-success gradient-btn">
+            <span class="fs25">Selected Numbers</span>
+            <span class="ms-2 icon">($)</span>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-2">
+        <div class="col-10 p-0">
+            <div class="selected-card p-2 bg-white shadow-sm rounded">
+                <!-- Iterate through each cartDetailObject item and display as a row -->
+                <div class="d-flex align-items-center gap-2 mb-2" *ngFor="let value of cartDetailObject">
+
+                    <!-- Display each selected number -->
+                    <span *ngFor="let val of value.bet" class="btn shadow-sm px-3 py-2 rounded"
+                        [ngClass]="{'btn-success': val % 2 === 0, 'btn-warning': val % 2 !== 0}">
+                        {{ val }}
+                    </span>
+
+                    <span *ngIf="value.isQp === 'Y'" class="text-muted">(QP)</span>
+                    <span class="ms-auto fw-bold">${{ value.betAmount }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-2">
+        <div class="col-10 cart-card p-3 rounded">
+            <div class="d-flex  justify-content-between">
+                <button class="btn btn-light cart-button d-flex align-items-center flex-column rounded shadow">
+                    <!-- <i class="fas fa-eye-slash text-success"></i> -->
+                    <img class="label-icon" src="/assets/kiosk/invisible.svg" alt="">
+                    <span class="text-success fw-bold">Hide Cart</span>
+                </button>
+                <button class="btn btn-light cart-button d-flex align-items-center flex-column rounded shadow"
+                    (click)="clearCart()">
+                    <img class="label-icon" src="/assets/kiosk/cart.svg" alt="">
+                    <span class="text-success fw-bold">Clear Cart</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-4 mb-4">
+        <div class="col-10 p-0 ">
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <button *ngFor="let num of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]"
+                    class="btn btn-light shadow-sm px-3 py-2 num" [ngClass]="{
+            'btn-numbers': num !== 21 && num !== 22,
+            'btn-numbers2': num === 21 || num === 22,
+            'selected-btn': selectedNumbers.includes(num)
+        }" (click)="selectNumber(num)">
+                    {{ num }}
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-2 ">
+        <div class="card col-10 shadow-sm p-4 rounded ">
+            <h5 class="fw-bold text-success">Wager Amount ($):</h5>
+            <select class="form-select mb-3" [(ngModel)]="selectedAmount">
+                <option value="0">Select</option>
+                <option *ngFor="let betAmount of stakes" [value]="betAmount">
+                    {{ betAmount }}
+                </option>
+            </select>
+
+            <div class="p-3 rounded-3 text-center cart-card shadow-top">
+                <div class="d-flex justify-content-center gap-4 mb-2">
+                    <button class="btn btn-light shadow-sm fw-bold px-4 py-2 color-green">Clear All</button>
+                    <button class="btn btn-light shadow-sm fw-bold px-4 py-2 color-green" (click)="quickPick()">Quick
+                        Pick</button>
+                </div>
+                <button class="btn btn-light shadow-sm fw-bold px-5 py-2 mt-2 color-green" (click)="addToCart()">Add To
+                    Cart</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center  mt-2">
+        <div class="card col-10  shadow-sm p-3 rounded">
+
+            <div class="row justify-content-between align-items-center">
+                <div class="col-auto">
+                    <span class="fw-bold text-success">Next Draw:</span>
+                </div>
+                <div class="col-auto">
+                    <span class="fw-bold text-success">Total Cost:</span>
+                </div>
+            </div>
+
+            <div class="bg-success p-3 mt-2 rounded d-flex justify-content-between align-items-center">
+                <select class="form-control w-25" [(ngModel)]="nextDraw" (change)="changeNextDraw()">
+                    <option value="0" disabled>Select</option>
+                    <option *ngFor="let nxtDraw of durations" [attr.value]="nxtDraw"
+                        [selected]="nxtDraw == this.nextDraw">
+                        {{ nxtDraw }}</option>
+                </select>
+
+                <span class="fw-bold text-white">{{this.totalBetAmount}}</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container row justify-content-center mt-4">
+        <button class=" col-6 confirm-btn" (click)="confirmBet()">Confirm</button>
+    </div>
+
+
+
+</div>

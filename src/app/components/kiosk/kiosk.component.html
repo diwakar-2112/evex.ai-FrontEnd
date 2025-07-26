@@ -1,0 +1,14 @@
+<div class="section-container">
+    <div class="row justify-content-center">
+        <!-- <div class="col-1 drawer">
+            <div class="row justify-content-center d-flex text-center" *ngFor="let game of games; let i =index">
+                <img class="drawer-img" [src]="game.src" [alt]="game.name" (click)="gameSelect(game.name)">
+                <span class="logo-text" (click)="gameSelect(game.name)">{{ game.name }}</span>
+                <hr *ngIf="i!=games.length-1">
+            </div>
+        </div> -->
+        <div class="col-10 col-sm-8">
+            <app-top-draw *ngIf="this.gameName=='top-draw'"></app-top-draw>
+        </div>
+    </div>
+</div>

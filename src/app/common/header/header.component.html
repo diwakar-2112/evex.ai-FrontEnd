@@ -1,7 +1,8 @@
 <div class="header-container">
     <nav class="navbar navbar-expand-lg navbar-dark gradient-background">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">MyApp</a>
+            <a class="navbar-brand" href="#">𝒆𝙫𝟈𝙭.𝗔𝒊</a>
+             <!-- <img src="/assets/img/logo.png" alt=""> -->
             <button class="navbar-toggler" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -9,10 +10,10 @@
             <div class="collapse navbar-collapse navlink"  [ngbCollapse]="isNavbarCollapsed">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" (click)="goToPath('/home')">Home</a>
+                        <a class="nav-link active" [routerLink]="['']">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" [routerLink]="['/kiosk']">Kiosk</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -24,7 +25,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" [routerLink]="['/contact']" routerLinkActive="active">Contact</a>
                     </li>
                 </ul>
             </div>

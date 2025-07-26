@@ -1,0 +1,23 @@
+.section-container{
+        overflow-x: hidden;
+        width: 100%;
+    background-color: rgb(245 245 245);
+}
+.drawer-img{
+    width: 8rem;
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+.drawer{
+    // padding: 2rem;
+    background-color: rgb(255 255 255);
+}
+.logo-text{
+    color: rgb(159 159 159);
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+body, html {
+    overflow-x: hidden;
+}

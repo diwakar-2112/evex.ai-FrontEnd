@@ -1,0 +1,214 @@
+<!-- <div class="container">
+    <h2>WAGER AMOUNT ($):</h2>
+    <div class="wager-selector">
+      <button class="arrow" (click)="moveLeft()">&lt;</button>
+  
+      <div class="carousel-wrapper">
+        <div class="options" [style.transform]="getTransform()">
+          <button
+            *ngFor="let amount of amounts; let i = index"
+            [class.option]="true"
+            [class.active]="i === centerIndex"
+            (click)="selectIndex(i)"
+          >
+            ${{ amount }}
+          </button>
+        </div>
+      </div>
+  
+      <button class="arrow" (click)="moveRight()">&gt;</button>
+    </div>
+  </div>
+   -->
+
+   <!-- game-carousel.component.html -->
+<!-- <div #carouselWrapper class="carousel-wrapper d-flex justify-content-center align-items-center">
+  <div class="carousel-container d-flex align-items-end">
+    <div
+      *ngFor="let game of games; let i = index"
+      class="game-icon mx-2"
+      [class.active]="i === activeIndex"
+      (click)="setActive(i)"
+    >
+      <div class="circle">
+        <img [src]="game.image" alt="{{ game.name }}" />
+      </div>
+      <div class="game-name mt-2 text-center">{{ game.name }}</div>
+      <div class="now-playing text-center" *ngIf="i === activeIndex">Now Playing</div>
+    </div>
+  </div>
+</div> -->
+<!-- <div #carouselWrapper class="carousel-wrapper">
+  <div class="carousel-container d-flex align-items-end">
+    <div
+      *ngFor="let game of games; let i = index"
+      class="game-icon mx-2"
+      [class.active]="i === activeIndex"
+      (click)="setActive(i)"
+    >
+      <div class="circle">
+        <img [src]="game.image" alt="{{ game.name }}" />
+      </div>
+      <div class="game-name mt-2 text-center">{{ game.name }}</div>
+      <div class="now-playing text-center" *ngIf="i === activeIndex">Now Playing</div>
+    </div>
+  </div>
+</div>
+
+<div class="scroll-indicator-wrapper">
+  <button class="arrow-btn left" (click)="scrollLeft()">
+    <span>&larr;</span>
+  </button>
+
+  <div class="progress-track">
+    <div class="progress-fill" [style.width.%]="progressPercent"></div>
+  </div>
+
+  <button class="arrow-btn right" (click)="scrollRight()">
+    <span>&rarr;</span>
+  </button>
+</div> -->
+
+<!-- 
+<div class="carousel-wrapper">
+  <div class="carousel-window">
+    <div class="carousel-container" [ngStyle]="{ transform: 'translateX(' + translateX + 'px)' }">
+      <div
+        *ngFor="let game of games; let i = index"
+        class="game-icon"
+        [class.active]="i === activeIndex"
+        (click)="setActive(i)"
+      >
+        <div class="circle">
+          <img [src]="game.image" alt="{{ game.name }}" />
+        </div>
+        <div class="game-name">{{ game.name }}</div>
+        <div class="now-playing" *ngIf="i === activeIndex">Now Playing</div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- <div class="carousel-wrapper" #carouselWrapper>
+  <div class="carousel-window">
+    <div
+      class="carousel-container"
+      #carouselContainer
+      [ngStyle]="{ transform: 'translateX(' + translateX + 'px)' }"
+    >
+      <div
+        *ngFor="let game of games; let i = index"
+        #gameItems
+        class="game-icon"
+        [class.active]="i === activeIndex"
+        (click)="setActive(i)"
+      >
+        <div class="circle">
+          <img [src]="game.image" alt="{{ game.name }}" />
+        </div>
+        <div class="game-name">{{ game.name }}</div>
+        <div class="now-playing" *ngIf="i === activeIndex">Now Playing</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="scroll-indicator-wrapper">
+  <button class="arrow-btn left" (click)="scrollLeft()">←</button>
+  <div class="progress-track">
+    <div class="progress-fill" [style.width.%]="progressPercent"></div>
+  </div>
+  <button class="arrow-btn right" (click)="scrollRight()">→</button>
+</div> -->
+
+
+
+<div class="kiosk-page">
+  <div class="background-wave"></div>
+
+  <!-- ======================== TOP BAR ======================== -->
+  <div class="top-bar">
+    <div class="balance">
+      <img src="assets/icons/wallet.svg" alt="Balance"> {{ balance | number }}
+    </div>
+    <div class="time">{{ currentTime | date:'h:mm a' }}</div>
+    <div class="cart">
+      <img src="assets/icons/cart.svg" alt="Cart"> {{ cartItemCount }}
+    </div>
+  </div>
+
+  <!-- ======================== LOGO ======================== -->
+  <div class="logo-container">
+    <img src="assets/logos/supreme-ventures-logo.svg" alt="Supreme Ventures">
+  </div>
+
+  <!-- ======================== GAME CAROUSEL ======================== -->
+  <div class="carousel-container">
+    <div class="carousel-track" [style.transform]="carouselTransform">
+      <div class="game-item"
+           *ngFor="let game of games; let i = index"
+           (click)="selectGame(i)"
+           [class.active]="i === selectedIndex">
+
+        <div class="game-logo-wrapper">
+          <img [src]="game.logo" [alt]="game.name">
+        </div>
+        <div class="game-info">
+          <p class="game-name">{{ game.name }}</p>
+          <p class="game-status" *ngIf="i === selectedIndex">{{ game.nowPlayingText }}</p>
+        </div>
+      </div>
+    </div>
+    <!-- You can add the progress bar and arrows here -->
+  </div>
+
+
+  <!-- ======================== GAME PLAY AREA ======================== -->
+  <div class="play-area">
+    <h2>Play {{ games[selectedIndex].name }}</h2>
+    <div class="timer-tag">15 minutes left on the next draw</div>
+
+    <!-- Step 1: Choose Numbers -->
+    <div class="step-card">
+      <div class="step-header">
+        <span>Step 1: Choose Your Numbers</span>
+        <div class="step-buttons">
+          <button class="mix-btn">Mix</button>
+          <button class="quick-pick-btn" (click)="quickPick()">Quick Pick</button>
+        </div>
+      </div>
+
+      <div class="picked-numbers-display">
+        <!-- Display the picked numbers here -->
+        <div class="picked-num">{{ selectedNumbers[0] || '' }}</div>
+        <div class="picked-num">{{ selectedNumbers[1] || '' }}</div>
+      </div>
+
+      <div class="number-grid">
+        <button *ngFor="let num of numbersToPick"
+                class="num-button"
+                [class.selected]="isSelected(num)"
+                (click)="toggleNumberSelection(num)">
+          {{ num }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 2: Wager Amount -->
+    <div class="step-card">
+      <div class="step-header">
+        <span>Step 2: Choose Wager Amount</span>
+        <div class="wager-input">
+          <span>$</span>
+          <input type="text" [value]="wagerAmount | number:'1.2-2'">
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirmation Buttons -->
+    <div class="confirm-buttons">
+      <button class="back-btn">Back</button>
+      <button class="confirm-btn">Confirm</button>
+    </div>
+  </div>
+</div>

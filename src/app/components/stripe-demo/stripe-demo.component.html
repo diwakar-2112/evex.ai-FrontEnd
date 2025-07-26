@@ -1,0 +1,64 @@
+<!-- <div class="container">
+
+    <h2 class="mt-5 mb-4">Angular 17 Stripe Payment Gateway Example</h2>
+  
+    <div class="col-md-5 mb-2">
+  
+      <button (click)="makePayment(15)" class="btn btn-danger btn-block">Pay $15</button>
+  
+    </div>
+  
+    <div class="col-md-5 mb-2">
+  
+      <button (click)="makePayment(25)" class="btn btn-primary btn-block">Pay $25</button>
+  
+    </div>
+  
+    <div class="col-md-5">
+  
+      <button (click)="makePayment(35)" class="btn btn-success btn-block">Pay $35</button>
+  
+    </div>
+  
+  </div> -->
+  <!-- <div class="signature-container">
+    <canvas #signaturePad width="400" height="200" class="signature-canvas" (mousedown)="startDrawing($event)" (mouseup)="stopDrawing()" (mouseleave)="stopDrawing()" (mousemove)="draw($event)"></canvas>
+    
+    <div class="actions">
+      <button (click)="clear()">Clear</button>
+      <button (click)="submit()">Submit</button>
+
+    </div>
+  </div>
+  <button (click)="getSignature()">Get</button>
+  <div *ngIf="fetchedImage">
+    <h3>Fetched Signature:</h3>
+    <img [src]="fetchedImage" alt="Fetched Signature" style="border:1px solid #333;" />
+  </div>
+   -->
+
+   <div class="signature-container">
+    <canvas #signaturePad width="400" height="200" class="signature-canvas"
+            (mousedown)="startDrawing($event)"
+            (mouseup)="stopDrawing()"
+            (mouseleave)="stopDrawing()"
+            (mousemove)="draw($event)">
+    </canvas>
+  
+    <div class="actions">
+      <button (click)="clear()">Clear</button>
+      <button (click)="submit()">Submit</button>
+    </div>
+  </div>
+  
+  <button (click)="getSignature()">Get</button>
+  <button *ngIf="fetchedImage" (click)="editSignature()">Edit</button>
+  
+  <div *ngIf="loading">Loading signature...</div>
+  
+  <div *ngIf="fetchedImage && !loading">
+    <h3>Fetched Signature:</h3>
+    <img [src]="fetchedImage" alt="Fetched Signature" style="border:1px solid #333;" />
+    <p *ngIf="fetchedTimestamp"><strong>Saved At:</strong> {{ fetchedTimestamp | date:'medium' }}</p>
+  </div>
+  

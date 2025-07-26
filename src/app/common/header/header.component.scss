@@ -1,6 +1,12 @@
+*{
+  font-family: "Sour Gummy", serif;
+  font-weight: 500;
+  font-style: normal;
+}
 .header-container{
     position: sticky;
     top: 0;
+    z-index: 9999;
 }
 .form-white.input-group>.form-control:focus {
     border-color: #fff;
@@ -43,7 +49,10 @@
     }
   }
 
-
+.container-fluid{
+  max-width: 1200px !important;
+  margin: 0 auto;
+}
 
 
 
